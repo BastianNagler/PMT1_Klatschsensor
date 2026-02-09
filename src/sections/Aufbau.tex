@@ -1,0 +1,54 @@
+\section{Versuchsaufbau}\label{section:aufbau}
+
+\subsection{Schematischer Aufbau}\label{subsection:schematischer_aufbau}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{../Bilder/Aufbau.png}
+    \caption{Schematischer Aufbau der Schaltung~\cite{Beschreibung}}\label{fig:aufbau}
+\end{figure}
+
+Der in der Abbildung~\ref{fig:aufbau} rot dargestellte Bereich zeigt das Mikrofon inklusive einer Gleichspannungsquelle, welche eine Arbeitspunktverschiebung des Mikrofons bewirkt.
+Diese Gleichspannung dringt allerdings nicht in den weiteren Signalverarbeitungsweg ein, da sie durch den Kondensator C1 gefiltert wird.
+
+Da die Signale des Mikrofons sehr schwach sind, müssen diese zunächst verstärkt werden.
+Hierfür wird ein invertierender Operationsverstärker (gelber Bereich) verwendet.
+Die Verstärkung des OPVs wird durch die Widerstände \( R_2 \) und \( R_3 \) bestimmt und beträgt in der Grundkonfiguration:~\cite{Beschreibung}
+\begin{align*}
+    V = - \frac{R_3}{R_2} = - \frac{56~k\Omega}{2,2~k\Omega} \approx -25,45
+\end{align*}
+
+Das verstärkte Signal wird anschließend durch den Einweggleichrichter, implementiert durch die Diode \(D_1\), gleichgerichtet.
+
+Die in grün gekennzeichneten Bauteile (\(C_2\) und \(R_5\)) bewirken eine Glättung des gleichgerichteten Signals,
+ um die Spannungslücken des Signals zu überbrücken und außerdem auch um die Haltezeit der LED am Ende zu erhöhen.
+Dies geschieht, indem der Kondensator durch das Signal aufgeladen wird und sich daraufhin langsam über \(R_5\) entlädt.
+
+Diese Ausgangsspannung wird dann über \(R_6\) an den positiven Eingang eines Komparators, welcher durch einen OPV realisiert wird, weitergeleitet.
+Der Komparator vergleicht die Eingangsspannung mit einer Referenzspannung, die über das Spannungsteilernetzwerk aus \(R_7\) und \(R_{11}\) festgelegt wird.
+Ist die Eingangsspannung \(U_{EK}\) größer als die Referenzspannung \(U_{Ref}\), schaltet der Komparator seinen Ausgang auf eine Spannung nahe der Versorgungsspannung.
+Ist \(U_{EK} < U_{Ref}\), so beträgt die Ausgangsspannung einen Wert nahe der negativen Versorgungsspannung.
+
+Der Ausgang des Komparators schaltet über den Vorwiderstand \(R_9\) die LED \(D_2\),
+ welche aufgrund der Eigenschaft der Diode nur bei einer positiven Spannung des Komparator-Ausgangs aufleuchtet.
+
+\subsection{Realer Aufbau}\label{subsection:realer_aufbau}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{../Bilder/realer_aufbau.jpg}
+    \caption{Realer Aufbau der Schaltung}\label{fig:realer_aufbau}
+\end{figure}
+
+Der reale Aufbau wirkt unspektakulär. Die gesamte Schaltung ist nicht einsehbar unter einer Platte realisiert, lediglich die Widerstände \(R_3\) und \(R_5\) liegen oberhalb, um diese verändern zu können.
+Außerdem sind Anschlüsse für die Versorgungsspannung (-10~V, 0~V und +10~V) sowie Anschlüsse für das Oszilloskop an den gewünschten Messpunkten vorhanden.
+
+In Abbildung~\ref{fig:realer_aufbau} sind im wesentlichen vier verwendete Geräte zu erkennen:
+
+\begin{enumerate}
+    \item Netzteil mit zwei seperaten Spannungsquellen
+    \item Eigentliche Schaltung des Klatschsensors
+    \item Funktionsgenerator Rigol DG1012
+    \item Oszilloskop Rigol DS1102E
+\end{enumerate}
+
+Die Spannungsquellen werden innerhalb des Netzteils in Serie geschaltet, um die benötigte bipolare Spannung von \(\pm 10~V\) zu erhalten.
+Dabei wird der Minuspol auf -10~V, der gemeinsame Pol auf 0~V und der Pluspol der Quellen auf +10~V gelegt.

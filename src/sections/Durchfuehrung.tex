@@ -1,0 +1,399 @@
+\section{Veruchsdurchführung und Auswertung}\label{section:durchführung}
+
+\subsection{Vorbereitung}\label{subsection:vorbereitung}
+
+Zunächst wird \(R_3\) mit einem \(56~k\Omega\) und \(R_5\) mit einem \(180~k\Omega\) Widerstand bestückt.
+Außerdem wird die bipolare Spannungsquelle, wie in Abschnitt~\ref{subsection:realer_aufbau} beschrieben, aufgebaut.
+
+\subsection{Klatschsignal}\label{subsection:klatschsignal}
+
+Die erste Messung besteht darin, ein Klatschsignal auf dem Oszilloskop darzustellen.
+Dazu wird der Schalter \(S_1\) auf die obere Position gestellt und das Oszilloskop mit dem Messpunkt ``Audiosignal'' verbunden.
+Wichtig hierbei ist, den Trigger des Oszilloskops auf den ``single'' Modus zu stellen, wodurch nach einmaligen Auslösen des Triggers die Messung gestoppt wird und das Messergebnis erhalten bleibt.
+Wäre der Trigger im normalen Modus, so würde der Speicher des Oszilloskops nach einer kurzen Zeit überlaufen und das Signal wäre nicht mehr sichtbar.
+Anschließend wird nahe dem Mikrofon geklatscht, wodurch ein Signal am Oszilloskop dargestellt wird.\ (vgl.\ Abb.~\ref{fig:0_f1})
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{../Bilder/0_F1_ohneCursor.jpg}
+    \caption{Klatschsignal am Oszilloskop dargestellt}\label{fig:0_f1}
+\end{figure}
+
+Aus diesem Signal werden daraufhin je zwei möglichst verschiedene Werte für die Amplitude und Frequenz mithilfe des Cursors (vgl.\ Abb.~\ref{fig:1_f2}) ermittelt.\ (vgl.\ Tab.~\ref{tab:klatschsignal})
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{../Bilder/1_F2.jpg}
+    \caption{Frequenzermittlung mit dem Cursor}\label{fig:1_f2}
+\end{figure}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{ccc}
+        \toprule
+        Messung & Amplitude in V & Frequenz in Hz \\
+        \midrule
+        1 & 1,17 & 5000 \\
+        2 & 0,16 & 1670 \\
+        \midrule
+        Mittelwert & 0,665 & 3335 \\
+        \bottomrule
+    \end{tabular}
+    \caption{Gemessene Amplituden und Frequenzen des Klatschsignals}\label{tab:klatschsignal}
+\end{table}
+
+Das Hauptziel dieser Messung war es, zu bestätigen, ob die vorgegebenen Werte für die Funktion des Funktionsgenerators in der richtigen Größenordnung liegen.
+
+Die Messung einer Schaltung funktioniert nur sinnvoll mit einem determinierten Signal, um reproduzierbare Ergebnisse zu erhalten.
+Hierbei muss allerdings auf die Sinnhaftigkeit dieses Signals geachtet werden, d.h.\ das Signal sollte in etwa einem realen Klatschen entsprechen.
+
+Während zwar mit \(665~mV\) eine sehr viel größerer Wert als die vorgegebenen \(300~mV\) erreicht wurden, wird trotzdem eine Funktion mit Amplitude \(300~mV\) gewählt,
+ da die Messung sehr nahe am Mikrofon stattfand und außerdem eine Vergleichbarkeit der Ausarbeitungen gefordert ist.
+Die gemessene Frequenz von \(3335~Hz\) liegt nahe an den vorgegebenen \(3000~Hz\) und bestätigt somit die Sinnhaftigkeit des vorgegebenen Wertes.
+
+\subsection{Invertierender Verstärker}\label{subsection:inverting_amp}
+
+Wie in Abschnitt~\ref{subsection:klatschsignal} beschrieben, wird nun ein determiniertes Signal verwendet mit Amplitude \(300~mV\) und Frequenz \(3~kHz\).
+Außerdem wird am Funktionsgenerator ein Burst-Modus konfiguriert, mit einem Cycle von 1 und einer Periode von 1 Sekunde.
+
+Zunächst wird das Signal direkt in das Oszilloskop eingespeist, um die Korrektheit zu überprüfen.
+Daraufhin wird der Schalter \(S_1\) auf die untere Position --- die BNC-Buchse --- gestellt und diese mit dem Funktoionsgenerator verbunden.
+Außerdam kann am Oszilloskop jetzt wieder ein normaler Trigger-Modus verwendet werden,
+ da das neue Signal periodisch ist und die gesamte Periode von 1 Sekunde problemlos im Oszilloskop zwischengespeichert werden kann.
+
+Ziel der Messreihe ist es, die Verstärkung des invertierenden Verstärkers für verschiedene \(R_3\) zu bestimmen.
+Dazu wird Kanal 1 des Oszilloskops mit dem Messpunkt ``Audio\-signal'', Kanal 2 mit ``Verstärkerausgang'' verbunden.
+Um die peak-to-peak Spannungen zu messen, wird die integrierte Measure-Funktion verwendet.
+
+Die gemessene Verstärkung \(V\) lässt sich über folgende Formel berechnen:
+
+\begin{align*}
+    V = \frac{u_{amplified}}{u_{Audio}} = - \frac{R_3}{R_2}
+\end{align*}
+
+Hierbei ist allerdings zu beachten, dass \(u_{amplified}\) im Vergleich zu \(u_{Audio}\) ein invertiertes Signal ist (vgl.\ Abb.~\ref{fig:inverting_amp}).
+In der Formel wird dies berücksichtigt, indem \(u_{amplified}\) ein negatives Vorzeichen erhält.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{../Bilder/Inverting_Amp.jpg}
+    \caption{Invertierender Verstärker am Oszilloskop}\label{fig:inverting_amp}
+\end{figure}
+
+Außerdem wird die Verstärkung \(V_{theoretisch}\) ebenfalls über die Widerstände \(R_2\) und \(R_3\) berechnet und mit den gemessenen Werten verglichen.
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{ccccc}
+        \toprule
+        \(R_3\) in \(k\Omega\) & \(u_{Audio}\) in \(V\) & \(u_{amplified}\) in \(V\) & \(V_{gemessen}\) & \(V_{theoretisch}\) \\
+        \midrule
+        2,2 & 0,294 & -0,294 & -1,00 & -1,00\\
+        3,6 & 0,295 & -0,476 & -1,61 & -1,64\\
+        6,8 & 0,294 & -0,912 & -3,10 & -3,09\\
+        11 & 0,297 & -1,46 & -4,92 & -5,00\\
+        51 & 0,294 & -6,84 & -23,27 & -23,18\\
+        56 & 0,294 & -7,48 & -25,44 & -25,45\\
+        82 & 0,298 & -11,0 & -36,91 & -37,27\\
+        100 & 0,294 & -12,8 & -43,54 & -45,45\\
+        110 & 0,296 & -13,4 & -45,27 & -50,00\\
+        \bottomrule
+    \end{tabular}
+    \caption{Messung der Verstärkung des invertierenden Verstärkers für verschiedene \(R_3\)}\label{tab:inverting_amp}
+\end{table}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../Bilder/Inverting_Amp_Plot.jpg}
+    \caption{Grafische Darstellung der Verstärkung des invertierenden Verstärkers}\label{fig:inverting_amp_plot}
+\end{figure}
+
+Stellt man diese Werte betragsmäßig grafisch dar (vgl.\ Abb.~\ref{fig:inverting_amp_plot}), so fällt vor allem bei linearer Darstellung auf,
+ dass bei hohen Widerstandswerten von \(R_3\) die Abweichung zwischen gemessener und theoretischer Verstärkung immer größer wird.
+
+Dies kann durch die niederohmige Last des OPVs erklärt werden.
+Laut Datenblatt ist das Verhalten des OPV bei Lastwiderständen unter \(2~k\Omega\) nicht spezifiziert~\cite{OPV}.
+Da der Kondensator \(C_2\) zu Beginn des Aufladevorgangs eine geringe Impedanz besitzt, kann im ersten Moment die gesamte Last als \(R_4 = 330~\Omega\) angenommen werden.
+Somit können die Ausgangsspannungen bei hoher Verstärkung und niederohmiger Last nicht mehr garantiert werden, 
+ da der OPV zum Eigenschutz die Verstärkung reduziert, um zu hohe Ströme durch ihn zu vermeiden.
+Es müsste ein Strom von \(\frac{10~V}{330~\Omega} = 30~mA\) aufgebracht werden, der OPV kann allerdings mit der verwendeten Spannungsquelle maximal
+ \(\frac{10~V}{2000~\Omega} = 5~mA\) liefern.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{../Bilder/Inverting_Amp_110k.jpg}
+    \caption{Invertierender Verstärker mit \(R_3 = 110~k\Omega\)}\label{fig:inverting_amp_110k}
+\end{figure}
+
+Dies wird unter anderem auch in der Spannungskurve von \(u_{amplified}\) des Oszilloskops bei \(R_3 = 110~k\Omega\) deutlich (vgl.\ Abb.~\ref{fig:inverting_amp_110k}).
+Diese flacht ab einem kritischen Wert ab und steigt nur weiter, da sich der Kondensator \(C_2\) auflädt und durch dessen steigende Impedanz die Last erhöht wird und somit auch der 
+ Strom verringert wird.
+
+Auffällig hierbei ist allerdings auch, dass nur die positive Halbwelle des Signals abgeschnitten wird. 
+Dies liegt daran, dass aufgrund der nachfolgenden Diode, welche bei negativer Halbwelle sperrt, ein vernachlässigbarer Strom im Picoampere"~Bereich fließt, 
+ hier greift also kein Schutzmechanismus des OPVs.
+
+\subsection{Einweggleichrichtung}\label{subsection:einweggleichrichtung}
+
+Nun sei wieder \(R_3 = 56~k\Omega\).
+Außerdem wird Kanal 1 des Oszilloskops mit dem Messpunkt ``Verstärkerausgang'' und Kanal 2 mit ``Gleichgerichtetes'' verbunden.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{../Bilder/Einweggleichrichtung.jpg}
+    \caption{Einweggleichrichtung am Oszilloskop}\label{fig:einweggleichrichtung}
+\end{figure}
+
+Während einerseits das Erwartete passiert, dass die negative Halbwelle des Signals abgeschnitten wird (vgl.\ Abb.~\ref{fig:einweggleichrichtung}),
+ fällt andererseits auf, dass die positive Halbwelle eine erkennbare Absenkung erfährt.
+
+Mithilfe der exportierten CSV-Daten des Oszilloskops kann die Spannungsdifferenz zwischen dem verstärkten Signal und dem gleichgerichteten Signal auf etwa \(0,76~V\) bestimmt werden.
+Dieser Spannungsabfall ist auf die Flussspannung der Diode zurückzuführen, welche einen typischen Wert von etwa \(0,7~V\) hat.~\cite{Diode}
+Die hier gemessene Spannung von \(0,76~V\) liegt in einem sinnvollen Bereich, um als Flussspannung der Diode interpretiert zu werden.
+
+Des Weiteren fällt auf, dass die positive Halbwelle nicht auf 0~V zurückfällt, sondern stattdessen einen Restwert von etwa \(1,2~V\) behält.
+Dies kann durch den Kondensator \(C_2\) erklärt werden. 
+Dieser lädt sich während der positiven Halbwelle auf und entlädt sich nur langsam wieder über den Widerstand \(R_5\).
+Das Potential hinter der Diode wird somit auf einem höheren Niveau gehalten, während das Potential vor der Diode auf \(0~V\) absinkt, da die Diode keine Spannung in Sperrrichtung durchlässt.
+Somit entsteht der beobachtete Offset von etwa \(1,2~V\).
+
+Stellt man am Oszilloskop einen längeren Zeitbereich ein, so erkennt man nach der positiven Halbwelle ein langsames Abfallen der Spannung (vgl.\ Abb.~\ref{fig:einweggleichrichtung_zoom}).
+Der Verlauf des Abfalls erinnert stark an eine Entladekurve eines Kondensators, was die vorherige Erklärung weiter untermauert.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{../Bilder/Einweggleichrichtung_Zoom.jpg}
+    \caption{längerer Zeitbereich der Einweggleichrichtung am Oszilloskop}\label{fig:einweggleichrichtung_zoom}
+\end{figure}
+
+\subsection{Diodenspannung}\label{subsection:diodenspannung}
+
+Als nächstes wird die Spannung über die Diode gemessen. 
+Dazu wird der Pluspol eines Messkanals mit dem Messpunkt ``Verstärkerausgang'' und der Minuspol mit dem Messpunkt ``Gleichgerichtetes'' verbunden.
+Dadurch erhält man folgende Darstellung am Oszilloskop (vgl.\ Abb.~\ref{fig:diodenspannung}).
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{../Bilder/Diodenspannung.jpg}
+    \caption{Spannung über der Diode am Oszilloskop}\label{fig:diodenspannung}
+\end{figure}
+
+Auf dem Bild erkennt man deutlich, dass während der negativen Halbwelle des Verstärker\-ausgangs die gesamte Spannung von etwa 3,72~V  an der Diode abfällt.
+Außerdem fällt auf, dass die Flussspannung der Diode während der positiven Halbwelle jetzt etwa 0,84~V beträgt. 
+
+Diese Messung ist allerdings mit äußerster Vorsicht zu genießen, da das Oszilloskop in dieser Konfiguration einen Schluss nach Masse darstellt.
+Die Masse des Oszilloskops, des Funktionsgenerators und des Netzteils sind über den Schutzleiter miteinander verbunden und geerdet.
+Dadurch wird an den Messpunkt ``Gleichgerichtetes'' durch das Oszilloskop eine Verbindung nach Masse hergestellt und die Schaltung wesentlich verändert.
+Es liegt somit die gesamte Spannung des Verstärkerausgangs nur an der Diode an. 
+Ohne einen Schutzmechanismus des OPVs könnte dies zu einer Beschädigung der Schaltung führen, da annähernd ein Kurzschluss vorliegt.
+
+Ersichtlich wird dieser Messfehler auch daran, dass die LED der Schaltung in dieser Konfiguration nicht leuchtet.
+
+Um die Messung korrekt durchzuführen, gibt es mit den verfügbaren Mitteln im Wesentlichen zwei Möglichkeiten:
+\begin{itemize}
+    \item Messung der Spannungen an den einzelnen Punkten relativ zur Masse und anschließende Berechnung der Differenz.
+    \item Verwendung eines isolierten Oszilloskops, welches keine Verbindung zur Masse herstellt. Dies wäre z.B.\ über einen Trenntrafo oder ein batteriebetriebenes Oszilloskop möglich.
+\end{itemize}
+
+Hier wird die erstere Methode gewählt.\ (vgl.\ Abb.~\ref{fig:diodenspannung_math})
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{../Bilder/Diodenspannung_math.jpg}
+    \caption{Spannung über der Diode am Oszilloskop}\label{fig:diodenspannung_math}
+\end{figure}
+
+Legt man hier eine konstante Funktion durch die Maxima der Diodenspannung, so ergibt sich diese als ca.\ \(f(x) = 0,76~V\),
+ was der Flussspannung aus Abschnitt~\ref{subsection:einweggleichrichtung} entspricht.
+Dieser Wert hat sich somit durch zwei unabhängige und korrekte Messungen bestätigt.
+
+\subsection{Lade-/Entladekennlinie}
+
+Nun wird der Funktionsgenerator auf einen peak-to-peak Wert von 3~V und eine Burst-Periode von 3 Sekunden eingestellt um eine vollständige Entladung des Kondensators zu ermöglichen.
+Außerdem wird das Oszilloskop wieder an die gemeinsame Masse und den Messpunkt ``Komparatoreingang'' angeschlossen.
+
+Dadurch lässt sich nun bei korrekter Skalierung die Entladekurve eines Kondensators betrachten (vgl.\ Abb.~\ref{fig:kondensator_entladen}).
+Konkret handelt es sich hier um den Kondensator \(C_2\), welcher sich über den Widerstand \(R_5\) gegen Masse entlädt.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{../Bilder/Kondensator_Entladen.jpg}
+    \caption{Entladekurve des Kondensators mit \(R_5 = 180~k\Omega\)}\label{fig:kondensator_entladen}
+\end{figure}
+
+Aus diesen Messwerten lässt sich \(\tau\) am Oszilloskop dadurch bestimmen, indem die Stelle gesucht wird,
+ bei der die noch am Kondensator anliegende Spannung der Spannung nach \(t = 1 \cdot \tau\) entspricht.
+Dieser Wert lässt sich wiefolgt berechnen~\cite{Hipp}:
+
+\begin{align*}
+    U_C(t) &= U_0 \cdot e^{-\frac{t}{\tau}} \\
+    U_C(\tau) &= U_0 \cdot e^{-\frac{\tau}{\tau}} = \frac{U_0}{e} \approx 0,37 \cdot U_0 \\
+    \text{mit } U_0 = 3,3~V: \qquad U_C(\tau) &= 3,3~V \cdot 0,37 \approx 1,22~V
+\end{align*}
+
+Der Wert für \(U_0\) wird hierbei mittels des Cursors am Maximum der Spannung abgelesen.
+
+Diese Messung wird nun für unterschiedliche Werte von \(R_5\) durchgeführt und graphisch dargestellt:
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{cc}
+        \toprule
+        \(R_5\text{ in }k\Omega\) & \(\tau\text{ in ms}\) \\
+        \midrule
+        20 & 9,44 \\
+        68 & 30,8 \\
+        180 & 76 \\
+        390 & 135 \\
+        820 & 214 \\
+        1000 & 238 \\
+        \(\infty\)  & 476 \\
+        \bottomrule
+    \end{tabular}
+    \caption{Messwerte für \(\tau\) bei variierendem \(R_5\)}\label{tab:tau}
+\end{table}
+
+Der Wert \(R_5 = \infty\) wird angenähert, indem der Widerstand \(R_5\) gänzlich aus der Schaltung weggelassen wird und die beiden Klemmen im Leerlauf zueinander bleiben.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{../Bilder/tau_plot_normal.jpg}
+    \caption{Funktion für \(\tau\) in Abhängigkeit von \(R_5\)}\label{fig:tau_normal}
+\end{figure}
+
+Der Messpunkt für \(R_5 = \infty\) wird aus dem Graphen natürlich weggelassen, da eine sinnvolle Darstellung nicht möglich ist. 
+
+Der Zusammenhang zwischen \(\tau \text{, } R_5 \text{ und } C_2\) ergibt sich durch folgende Formel:
+
+\begin{align*}
+    \tau = R_5 \cdot C_2
+\end{align*}
+
+Diese Formel stellt einen linearen Zusammenhang dar, welcher in Abbildung \ref{fig:tau_normal} nicht zu erkennen ist. 
+Außerdem sollte laut der Formel für \(R_5 \rightarrow \infty\) gelten: \(\tau \rightarrow \infty\)
+Auch dieser Zusammenhang ist in der Tabelle \ref{tab:tau} nicht zu erkennen.
+
+Dadurch lässt sich aufgrund sehr großer Fehler ein systematischer Fehler in der ersten Messung vermuten.
+Berechnet man aus \(\tau(R_5 \rightarrow \infty)\) den trotzdem noch vorhandenen Widerstand, so ergibt sich dieser als:
+
+\begin{align*}
+    R_{Fehler} = \frac{\tau(R_5 \rightarrow \infty)}{C_2} = \frac{476~ms}{0,47~\mu F} \approx 1~M\Omega
+\end{align*}
+
+Dieser ``vergessene'' Widerstand lässt sich durch den Widerstand des Oszilloskops begründen. 
+Dieses hat nämlich, wie neben den BNC-Anschlüssen zu erkennen ist, einen Widerstand von \(1~M\Omega\) zwischen Plus- und Minuspol.
+Dieser Widerstand liegt parallel zu \(R_5\), da er die selben zwei Potentiale wie \(R_5\) miteinander verbindet.
+Berechnet man nun den neuen Gesamtwiderstand \(R_C\) parallel zum Kondensator und damit auch das gemessene \(\tau_{berechnet}\), so ergibt sich folgende Messreihe:
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{cccc}
+        \toprule
+        \(R_5\text{ in }k\Omega\) & \(R_C\text{ in }k\Omega\) & \(\tau_{berechnet}\text{ in ms}\) & \(\tau_{gemessen}\text{ in ms}\)\\
+        \midrule
+        20 & 19,6 & 9,2 & 9,44 \\
+        68 & 63,7 & 29,9 & 30,8 \\
+        180 & 152,5 & 71,7 & 76 \\
+        390 & 280,6 & 132 & 135 \\
+        820 & 450,6 & 212 & 214 \\
+        1000 & 500 & 235 & 238 \\
+        \(\infty\) & 1000 & 470 & 476 \\
+        \bottomrule
+    \end{tabular}
+    \caption{Messwerte für \(\tau\) bei variierendem \(R_5\)}\label{tab:tau_correct}
+\end{table}
+
+Die Abweichungen der Messungen sind jetzt nur noch minimal und z.T.\ auf die Rundung der Größen in den Zwischenschritten zurückzuführen.
+Dadurch kann man mit großer Sicherheit sagen, dass das Oszilloskop die Hauptfehlerquelle der falschen Messungen war.
+
+Stellt man diese neuen Werte nun graphisch dar, ergibt sich folgende Abbildung:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{../Bilder/tau_plot_corrected.jpg}
+    \caption{Funktion für \(\tau\) in Abhängigkeit von \(R_C\)}\label{fig:tau_corrected}
+\end{figure}
+
+Als eine Nebenbetrachtung soll außerdem die Ladekurve des Kondensators betrachtet werden.
+Diese ergibt sich wiefolgt:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{../Bilder/Ladekurve.jpg}
+    \caption{Ladekurve von \(C_2\)}\label{fig:ladekurve}
+\end{figure}
+
+Auffällig ist hierbei, dass sich keine typische exponentielle Funktion~\cite{Hipp} als Ladekurve ergibt, sondern annähernd eine Gerade.
+
+Dies lässt sich durch die Eingangsfunktion erklären, welche hier eine einzelne betrags\-mäßige Sinus-Kurve ist, wobei Spannungen unter 0,7~V auf 0~V abfallen, aufgrund der Diode.
+Der typische Verlauf der Ladekurve ergibt sich allerdings nur, bei einer Sprungfunktion der Eingangsspannung.
+Deshalb kann diese Ausgangsfunktion nicht bei einer solchen Eingangsfunktion erwartet werden. 
+
+Wendet man nun allerdings die Grundlagen der SuS-Vorlesung auf diese Signal"=Konstellation an, so lässt sich der gemessene Verlauf theoretisch begründen.
+Wie bereits erwähnt, die Funktion \(U(t) = U_0 \cdot (1 - e^{-\frac{t}{\tau}})\) ergibt sich als die Sprungantwort \(g(t)\) eines RC-Systems.
+Die Impulsantwort \(h(t)\) des Systems ergibt sich als die zeitliche Ableitung der Sprungantwort:
+\begin{align*}
+    h(t) = \dot{g(t)} = \frac{dg(t)}{dt} = \frac{U_0}{\tau} \cdot e^{-\frac{t}{\tau}}
+\end{align*}
+Faltet man diese Impulsantwort nun mit dem Eingangssignal \(x(t)\) unserer Messung, so ergibt sich folgendes Ausgangssignal \(y(t)\):~\cite{SUS}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{../Bilder/matlab.jpg}
+    \caption{Herleitung der Ladekurve des Kondensators \(C_2\)}\label{fig:matlab}
+\end{figure}
+
+Hier lässt sich eine sehr viel größere Ähnlichkeit zwischen der theoretischen und der gemessenen Aufladekurve feststellen.
+Die gemessene Kurve wirkt allerdings eher als eine Gerade.
+Der Unterschied der beiden Kurven kann durch die unterschiedliche zeitliche Skalierung der Darstellung und auch der Auflösung erklärt werden.
+Die Darstellung des Oszilloskops hat eine Auflösung von:
+\begin{align*}
+    \frac{100~\frac{\mu s}{div}}{25~\frac{Pixel}{div}} \Rightarrow 4~\mu s
+\end{align*}
+
+Während der Plot der theoretischen Kurve eine bessere Auflösung von \(2~\mu s\) aufweist, wodurch die kleinen ``Rundungen'' der Kurve im Plot mehr herausstechen.
+
+Die Skalierung der Kurven hat einen ähnlichen Effekt. Abweichungen von einer Geraden gehen dadurch in der Auflösung unter.
+
+\subsection{Komparatorausgang}\label{subsection:komparatorausgang}
+
+Nun wird zusätzlich Kanal 2  des Oszilloskops mit dem Messpunkt ``Komparatorausgang'' verbunden.
+
+Dadurch ergibt sich folgende Messung:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{../Bilder/Komparator.jpg}
+    \caption{Darstellung des Komparatorausgangs und der Entladekurve von \(C_2\)}\label{fig:komparator}
+\end{figure}
+
+Zunächst lässt sich die normale Verhaltensweise des Komparators beobachten.
+Ist die Eingangsspannung kleiner als die Referenzspannung, so liegt am Ausgang eine negative Spannung an.
+Steigt die Eingangsspannung nun über die Referenzspannung, so liegt am Ausgang eine positive Spannung an, was zum Leuchten der LED führt.
+
+Fällt die Eingangsspannung nun allerdings unter die Referenzspannung, so bleibt der Ausgang noch für eine gewisse Zeit auf die positive Spannung geschalten.
+Dies ist ein Verhalten, welches nicht durch einen idealen Komparator beschrieben wird.
+Stattdessen fällt der Ausgang erst ab, wenn die Eingangsspannung ca. 80~mV erreicht hat, nicht unwesentlich niedriger als die Referenzspannung \(U_ {Ref} = \frac{R_7}{R_7+R_{11}} \cdot U =  99~mV\).
+
+Grund hierfür könnte sein, dass die Referenzspannung aufgrund der Toleranzen der Widerstände \(R_7\) \(R_{11}\) nicht genau 99~mV entspricht.
+Hierfür wird eine Fehlerrechnung durchgeführt:
+\begin{align*}
+    \Delta U_{Ref}  &= \frac{\partial U_{Ref}}{\partial R_7} \cdot \Delta R_7 + \frac{\partial U_{Ref}}{\partial R_{11}} \cdot \Delta R_{11} \\
+                    &= \frac{R_{11}}{{\left(R_7 + R_{11}\right)}^2} \cdot U_{in} \cdot \Delta R_7 + \frac{R_7}{{\left(R_7 + R_{11}\right)}^2} \cdot U_{in} \cdot \Delta R_{11} \\
+                    &= \frac{10^6~\Omega}{{\left(10^4~\Omega+10^6~\Omega\right)}^2} \cdot 10~V \cdot 10^4 \cdot 0,05 + \frac{10^4~\Omega}{{\left(10^4~\Omega+10^6~\Omega\right)}^2} \cdot 10~V \cdot 10^6 \cdot 0,05 \\
+                    &= 10~mV
+\end{align*}
+
+Die genauen Toleranzwerte der Widerstände sind leider nicht bekannt, deshalb wird von großzügig gewählten 5\% ausgegangen, obwohl typischerweise in solchen Schaltungen 1\% Widerstände verbaut werden.
+
+Die Rechnung ergibt \(U_{ref} = \left(99 \pm 10\right)~mV\).
+
+Dies liegt somit bei größtmöglichem Fehler immernoch 9~mV über der gemessenen Untergrenze des Komparators und kann somit nicht der einzige Grund für die Abweichung sein.
+
+Da leider nicht genau aus der Versuchsbeschreibung herausgeht, welche Art des Operationsverstärkers TL081 verbaut ist, werden im folgenden, jeweils die maximalen Werte verwendet.
+
+Rechnet man nun allerdings auch noch zu diesem Fehler von 10~mV der Referenzspannung die maximale Input-Offset Spannung des TL081 \(V_{IO,max} = 15~mV\)~\cite{Diode} bei Raumtemperatur hinzu,
+ so ergibt dies einen Fehler von \(\pm 25~mV\), wodurch die gemessenen \(80~mV\) im Toleranzbereich \(99~mV~\pm~25~mV\) des OPVs liegen. 
+
+Die Input-Offset Spannung ist hierbei der Spannungsunterschied, welche die beiden Eingänge des OPVs aufweisen müssen, um von diesem als über bzw.\ unter der Referenzspannung erkannt zu werden.
+Dies ergibt somit einen plausiblen Fehler des Operationsverstärkers, welcher aufgrund von minimalen Unterschieden in der Fertigung zwischen den beiden Kontaktpfaden entsteht.~\cite{OpAmp} 

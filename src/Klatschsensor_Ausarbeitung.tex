@@ -1,0 +1,120 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{csquotes}
+\usepackage[
+	backend=biber,
+	style=ieee,
+	sorting=none,
+]{biblatex}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage{caption}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{pdflscape}
+\usepackage{tabularx}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{geometry}
+\usepackage{bm}
+
+%DEFINES
+
+\def\Autor{Bastian Nagler}
+\def\Semester{Wintersemester 2025/26}
+\def\Titel{Klatschsensor Ausarbeitung}
+
+\graphicspath{../Bilder/}
+
+%Bibliographie
+\addbibresource{literatur.bib}
+\ExecuteBibliographyOptions{url=true}
+
+% Seitenränder
+\geometry{margin=2.5cm}
+
+%Einrückung der Absätze
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+
+%leere erste Seite
+\fancypagestyle{plain}{
+  \fancyhf{} % alles löschen (Header + Footer)
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0pt}
+}
+
+% Kopfzeile
+\pagestyle{fancy}
+\setlength{\headheight}{24pt} % Höhe der Kopfzeile anpassen
+\fancyhead[L]{\includegraphics[width=4cm]{../Bilder/OTH_Logo_1lineB_pos_b.png}} % Bild auf der linken Seite
+\fancyhead[R]{\Titel} % Titel auf der rechten Seite
+ 
+% Fußzeile
+\fancyfoot[R]{\thepage} % Seitenzahl in der Fußzeile
+\fancyfoot[C]{} % Keine Seitenzahl in der mittleren Fußzeile
+\fancyfoot[L]{\Autor}
+\renewcommand{\footrulewidth}{0.4pt}
+
+
+\begin{document}
+	\begin{titlepage}
+		\thispagestyle{empty}
+
+			\begin{center}
+				\vspace*{\stretch{0.5}}
+				\includegraphics[width=0.5\textwidth]{../Bilder/OTHR_FakEI_Logo.png}\\
+				\vspace*{\stretch{0.25}}
+				\Huge
+				\textsc{Ausarbeitung}\\
+				\textsc{Klatschsensor \hspace*{1pt} (V 1)}\\
+				\large
+				\vspace*{\stretch{0.5}}
+				\vspace*{\stretch{0.5}}
+
+		\vspace*{\stretch{2}}
+		{\renewcommand{\arraystretch}{1.5}
+		\begin{tabular}{l l}
+			\href{https://github.com/BastianNagler/PMT1_Klatschsensor}{Erstellt von:}  & \hspace{4cm} Bastian Nagler\\
+			%Matrikelnummer:  & \hspace{4cm}\MatNr\\
+			Letzter Stand:  & \hspace{4cm} \textsc{\Semester}  \\
+			Lizenz:  & \hspace{4cm} GPLv3
+		\end{tabular}
+		}
+		\vspace*{\stretch{1}}
+
+		\end{center}
+	\end{titlepage}
+
+	\newpage
+
+	\tableofcontents
+	\newpage
+
+	%INPUTS
+
+	\include{sections/Einfuehrung.tex}
+
+	\include{sections/Fragen}
+	
+	\include{sections/Aufbau}
+
+	\include{sections/Durchfuehrung}
+
+	\section{Literaturverzeichnis}
+
+	\subsection{Quellenverzeichnis}
+	\printbibliography[heading=none]
+
+	\subsection{Abbildungsverzeichnis}
+	\listoffigures
+
+	\subsection{Tabellenverzeichnis}
+	\listoftables
+
+	
+\end{document}

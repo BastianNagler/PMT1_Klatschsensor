@@ -1,0 +1,39 @@
+\section{Bantwortung der Vorbereitungsfragen}
+
+\textbf{Frage 1: Welchen Wert hat die Verstärkung des invertierenden Verstärkers in der Grundkonfiguration?}
+
+\begin{align*}
+    V = - \frac{R_3}{R_2} = - \frac{56~k\Omega}{2,2~k\Omega} \approx -25,45
+\end{align*}
+
+\textbf{Frage 2: Wie groß ist der garantierte Ausgangsspannungsbereich des realen OPV TL081C bei einer Versorgungsspannung von \(\pm 15~V\) und einer Belastung mit \(R_L = 2~k\Omega\)}
+
+Aus dem Datenblatt: \(\pm 10~V\)
+
+\textbf{Frage 3: Wie groß wäre der Ausgangsspannungsbereich bei einem idealen OPV unter sonst gleichen Bedingungen?}
+
+Der Ausgangsspannungsbereich entspräche genau der Versorgungsspannung, also \(\pm 15~V\)
+
+\textbf{Frage 4: Welche Spannung \(\bm{U_{ref}}\) liegt am Komparatoreingang ``-'' an?}
+
+\begin{align*}
+    U_{ref} = \frac{R_7}{R_7 + R_{11}} \cdot U = \frac{10~k\Omega}{10~k\Omega + 1~M\Omega} \cdot 10~V \approx 99~mV
+\end{align*}
+
+\textbf{Frage 5: Welche Entladezeitkonstante des Kondensators ist mit der Grundkonfiguration eingestellt?}
+
+\begin{align*}
+    \tau = R_5 \cdot C_2 = 180~k\Omega \cdot 0,47~\mu F = 84,6~ms
+\end{align*}
+
+\textbf{Frage 6: Wie lange würde es theoretisch dauern, bis die LED nach einem Klatschimpuls wieder ausgeht, wenn \(U_{ref} = 0~V\) wäre?}
+
+Es würde rein theoretisch unendlich lange dauern, da die Spannung des Kondensators beim Entladen nie 0~V erreicht und somit nie unter die Referenzspannung fällt, 
+ wodurch der Komparator immer auf die positive Versorgungsspannung am Ausgang schaltet.
+
+\textbf{Frage 7: Wie setzt sich der Farbcode für einen \(360~k\Omega\) Widerstand zusammen?}
+
+Annahme: 5\% Toleranz
+
+4-Ring-Farbcode: orange-blau-gelb-gold\\
+5-Ring-Farbcode: orange-blau-schwarz-orange-gold
